@@ -23,13 +23,13 @@ int check_exist(int record_num){
     return serial_number;
 }
 
-/*lotto_record_t copy(lotto_record_t lotto_, int serial_number){
+lotto_record_t copy(lotto_record_t lotto_, int serial_number){
     FILE *ptr = fopen("record.bin", "r+");
     lotto_record_t tmp;
     for(int i = 0;i<serial_number;i++){
         tmp[i].
     }
-}*/
+}
 
 lotto_record_t buy_lotto(int num, int serial_number){
     srand(time(NULL));
