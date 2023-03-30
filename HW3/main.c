@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include<ctype.h>
+#include <ctype.h>
+
 typedef struct lotto_record {
     int receipt_id;
     int receipt_price;
@@ -23,19 +24,10 @@ int check_exist(int record_num){
     return serial_number;
 }
 
-/*lotto_record_t copy(lotto_record_t lotto_, int serial_number){
-    FILE *ptr = fopen("record.bin", "r+");
-    lotto_record_t tmp;
-    for(int i = 0;i<serial_number;i++){
-        tmp[i].
-    }
-}*/
-
 lotto_record_t buy_lotto(int num, int serial_number){
     srand(time(NULL));
 	int tm, same = 0, lotto[5][7], tmp[6];
 	lotto_record_t lotto_r;
-	//printf("已為您購買 %d 組樂透組合輸出至 lotto.txt", num);
 	
 	char file_name[23];
 	printf("%d\n", serial_number);
@@ -75,6 +67,7 @@ lotto_record_t buy_lotto(int num, int serial_number){
 		        }
 		    }
 		}
+		
 		for(int j = 0;j<=6;j++){
 			lotto[i][j] = tmp[j];
 			lotto_r.lotto_set[i][j] = tmp[j];
@@ -99,7 +92,6 @@ lotto_record_t buy_lotto(int num, int serial_number){
 	lotto_r.receipt_price = 100*num;
 	
     strcpy(lotto_r.receipt_time, asctime(info));
-    //lotto_r.lotto_set = lotto;
     fclose(fp);
     return lotto_r;
 	
@@ -128,7 +120,6 @@ void redemption(){
     scanf("%c", &c);
     char a[50];
     fgets(a, 50, stdin);
-    //printf("\n%s", a);
 
     int i = 4;
     int j = 0, k =  0, tmp = 0;
@@ -138,7 +129,6 @@ void redemption(){
     int arr[3];
     
     for (int j=0; j<=len;j++) {
-        //printf("%c", a[j]);
         if (a[j]>='0' && a[j]<='9') {
             tmp = (tmp*10) + (a[j]-'0');
         }
@@ -157,7 +147,6 @@ void redemption(){
             printf("0");
         printf("%d ", arr[i]);
     }
-    
     
     int Win = 0, any = 0, code[5] = {0 ,0 ,0, 0, 0};
     FILE *ptr = fopen("record.bin", "r+");
@@ -188,9 +177,7 @@ void redemption(){
     if(any == 0)
         printf("\n很遺憾您並未中獎 T_T");
     fclose(ptr);
-
 }
-
 
 void record(lotto_record_t lotto, int serial_number){
     FILE *fp = fopen("record.bin", "a+");
